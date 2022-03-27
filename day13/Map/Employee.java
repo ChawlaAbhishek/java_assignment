@@ -1,49 +1,46 @@
 package day13.Map;
 
 public class Employee {
-   private int roll;
-    private int name;
-    private int marks;
+   private int id;
+    private String name;
+    private int salary;
 
-    public Employee(int roll, int name, int marks) {
-        this.roll = roll;
+    public Employee(int id, String name, int salary) {
+        this.id = id;
         this.name = name;
-        this.marks = marks;
+        this.salary = salary;
     }
 
-    public Employee() {
+    public int getId() {
+        return id;
     }
 
-    public int getRoll() {
-        return roll;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setRoll(int roll) {
-        this.roll = roll;
-    }
-
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getMarks() {
-        return marks;
+    public int getSalary() {
+        return salary;
     }
 
-    public void setMarks(int marks) {
-        this.marks = marks;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "roll=" + roll +
-                ", name=" + name +
-                ", marks=" + marks +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }
