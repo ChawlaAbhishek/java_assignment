@@ -1,0 +1,362 @@
+create table employee (
+ eid int primary key,
+ name varchar(15),
+  address varchar(15),
+  salary int
+);
+    
+
+
+
+1.
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Employee id");
+		int eid = sc.nextInt();
+		
+		
+		
+		
+		
+		
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("select * from employee where eid = ?");
+        	 
+        	 ps.setInt(1, eid);
+        	 ResultSet rs = ps.executeQuery();
+        	 
+        	 if(rs.next()) {
+        		 System.out.println("Salary is "+rs.getInt("salary"));
+        	 }
+        	 else {
+        		 System.out.println("record does not exist");
+        	 }
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+2.
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+	
+			
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("select * from employee");
+        	 
+        	 
+        	 ResultSet rs = ps.executeQuery();
+        	 
+        	 while(rs.next()) {
+        		 System.out.println("employee id is "+rs.getInt("eid"));
+        		 System.out.println("Name is "+rs.getString("name"));
+        		 System.out.println("Address is "+rs.getString("address"));
+        		 System.out.println("Salary is "+rs.getInt("salary"));
+        		
+        	 }
+        	 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+3.
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+	
+			
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("update employee set salary = salary+?");
+        	 ps.setInt(1, 500);
+        	 
+        	 
+        	 int x = ps.executeUpdate();
+        	 
+        	 if(x>0) {
+        		 System.out.println("record updated"+x);
+        	 }else {
+        		 System.out.println("not updated");
+        	 }
+        	 
+        
+        	 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+
+4,
+
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Scanner sc =  new Scanner(System.in);
+		
+		System.out.println("Enter employee id");
+		int eid = sc.nextInt();
+		System.out.println("Enter employee name");
+		String name = sc.next();
+		
+		System.out.println("Enter Salary");
+		int salary = sc.nextInt();
+		
+		
+	
+			
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("insert into employee (eid,name,salary) values(?,?,?);");
+        	 ps.setInt(1, eid);
+        	 ps.setString(2, name);
+        	 ps.setInt(3, salary);
+        	 
+        	 
+        	 
+        	 int x = ps.executeUpdate();
+        	 
+        	 if(x>0) {
+        		 System.out.println("inserted"+x);
+        	 }else {
+        		 System.out.println("not inserted");
+        	 }
+        	 
+        
+        	 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+
+5,
+
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+	
+			
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("select * from employee where eid=1");
+        	 
+        	 
+        	 
+        	ResultSet rs = ps.executeQuery();
+        	 
+        	if(rs.next()) {
+        		System.out.println(rs.getInt("eid"));
+        		System.out.println(rs.getInt("salary"));
+        		System.out.println(rs.getString("address"));
+        		System.out.println(rs.getString("name"));
+        	}
+        	 
+        
+        	 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+
+
+6, 
+
+package com.masai.jdbcapp1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		
+	
+			
+         try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+         
+         String url = "jdbc:mysql://localhost:3306/db1";
+         
+         try(Connection conn =DriverManager.getConnection(url, "root", "abhishek")){
+        	 
+        	 PreparedStatement ps = conn.prepareStatement("select * from employee where salary<800000");
+        	 
+        	 
+        	 
+        	ResultSet rs = ps.executeQuery();
+        	 
+        	while(rs.next()) {
+        		System.out.println(rs.getInt("eid"));
+        		System.out.println(rs.getInt("salary"));
+        		System.out.println(rs.getString("address"));
+        		System.out.println(rs.getString("name"));
+        	}
+        	 
+        
+        	 
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
