@@ -67,7 +67,7 @@ public class Mobile {
 
         //This method return the list of all the models of the supplied company
         //if we supply any invalid company name then it should return null value
-        if(company.equals(mobiles.values()))
+        if(company.equals(mobiles.KeySet()))
 
             return ls;
         else
