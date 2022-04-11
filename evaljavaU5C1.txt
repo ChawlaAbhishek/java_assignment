@@ -1,5 +1,8 @@
 
-1
+Solution 1->
+
+
+
 mysql> select * from students;
 +------+----------+
 | ID   | Name     |
@@ -43,7 +46,9 @@ mysql> select name from students where ID IN(select ID from packages where salar
 +---------+
 3 rows in set (0.01 sec)
 
-2.
+-----------------------------------------------------------------------------------------------------------------------------------
+
+solution 4->
 
 
 
@@ -78,3 +83,47 @@ mysql> select persons.firstname,persons.lastname,address.city,address.state from
 | bob       | alice    | new york | NewYork |
 +-----------+----------+----------+---------+
 2 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Solution 2->
+
+
+
+ For 3NF table should be in 2NF and there is no transitive functional dependency of non-prime attribute on a superKey.means transitive functional dependency of non-prime attribute on any super key should be
+removed.
+
+
+
+schema before 3NF(empID,empName,empZip,empState,empCity,empDistrict);
+
+schema after 3NF  empTable(empID,empName,empZip);
+                empZipTable(empZip,empState,empCity,empDistrict);
+
+here we remove transitive dependency of superkey on non prime attribute by breaking into two tables.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Solution3->
+
+
+
+ Transaction = A transaction means multiple queries in single statement i.e a sequence of operations performed (using one or more SQL statements) on a
+database as a single logical unit of work. A transaction must be fully completed or not completed means all quries in the transaction runs else no query runs.
+
+
+Acid Properties ->Atomic ,consistent,isolated ,durable.
+
+Atomic = It means transaction must be fully completed or else not completed means all queries in the transaction runs or else no query runs.
+
+Consistent = After transaction data must be in consistent state means if before transaction balace in two persons account is 1500 and after transaction it must be 1500.
+
+Isolated = Modifications of data performed by a transaction must be independent of another
+transaction. Unless this happens, the outcome of a transaction may be erroneous.
+
+durable = When the transaction is completed, effects of the modifications performed by the
+transaction must be permanent in the system.
