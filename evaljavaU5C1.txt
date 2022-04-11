@@ -1,0 +1,80 @@
+
+1
+mysql> select * from students;
++------+----------+
+| ID   | Name     |
++------+----------+
+|    1 | Ashley   |
+|    2 | Samantha |
+|    3 | Julia    |
+|    4 | Scarlet  |
++------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from packages;
++------+--------+
+| ID   | Salary |
++------+--------+
+|    1 |     15 |
+|    2 |     11 |
+|    3 |     12 |
+|    4 |     12 |
++------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from friends;
++------+-----------+
+| id   | friend_id |
++------+-----------+
+|    1 |         2 |
+|    2 |         3 |
+|    3 |         4 |
+|    4 |         1 |
++------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select name from students where ID IN(select ID from packages where salary>11);
++---------+
+| name    |
++---------+
+| Ashley  |
+| Julia   |
+| Scarlet |
++---------+
+3 rows in set (0.01 sec)
+
+2.
+
+
+
+
+mysql> select * from persons
+    -> ;
++----------+----------+-----------+
+| personID | lastname | firstname |
++----------+----------+-----------+
+|        1 | wang     | allen     |
+|        2 | alice    | bob       |
++----------+----------+-----------+
+2 rows in set (0.01 sec)
+
+mysql> select * from address;
++-----------+----------+----------+------------+
+| addressID | personID | city     | state      |
++-----------+----------+----------+------------+
+|         1 |        2 | new york | NewYork    |
+|         2 |        3 | Leetcode | California |
++-----------+----------+----------+------------+
+2 rows in set (0.00 sec)
+
+
+
+
+mysql> select persons.firstname,persons.lastname,address.city,address.state from persons LEFT JOIN address ON persons.personID=address.personID;
++-----------+----------+----------+---------+
+| firstname | lastname | city     | state   |
++-----------+----------+----------+---------+
+| allen     | wang     | NULL     | NULL    |
+| bob       | alice    | new york | NewYork |
++-----------+----------+----------+---------+
+2 rows in set (0.00 sec)
