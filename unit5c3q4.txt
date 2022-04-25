@@ -1,0 +1,46 @@
+
+Ans 4.
+
+(a)
+In general, when a class depends on another class then the dependent class creates the object of its
+dependency class directly, and then uses(call) its methods, it is called the dependency object created in the
+main control.
+But if some external entity is taking care of creating the dependency object then we say that control is inverted
+to some external entity, this is called Inversion of Control (IOC).
+The IOC is a design principle that is purely conceptual, in which an external entity provides the dependencies to the
+application components instead of hard coding them in the component class
+
+(b)
+Any java class, which will be registered with the "Spring container software" is known as Spring bean.
+The Spring bean is basically a POJO class.
+
+(c)
+ Auto Wiring = If spring container on its own detects the dependencies implicitly and injecting them into the
+dependent bean is known as "auto-wiring".
+
+Types:
+1. no (default)
+2. byName
+3. byType
+4. constructor
+
+Limitation of Auto Wiring:
+1. It can be used only to inject the objects but not the simple value dependencies.
+2. If container have multiple dependencies of same type to inject , then ambiguity problem may raise.
+
+(d)
+Bean scope in Spring:
+
+1. singleton scope (it is a default scope of spring bean)
+2. prototype scope
+3. request scope
+4. session scope
+
+
+Singleton scope : it returns same bean class object for all the getBean() method call with the same bean id. i.e
+whenever we are pulling an object with the same id multiple time ,container will return same object.
+
+Prototype scope:
+It returns a separate bean class object for every getBean() method call even with the same id also.
+In order to tell the container to put a bean object in a prototype scope we need to mention by
+using "scope" attribute of the <bean> tag.
